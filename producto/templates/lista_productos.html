@@ -1,0 +1,20 @@
+{% extends 'inicio.html' %}
+
+
+{% block title %}
+    Lista de productos
+{% endblock %}
+
+{% block content %}
+    <h1>Productos</h1>
+    <ul>
+    {% for producto in productoss %}
+        <li>
+            <a href="{% url 'producto_detalle' producto.pk%}">
+                Nombre {{producto.nombre}} - Descripcion: {{producto.descripcion}} el precio {{producto.precio}}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

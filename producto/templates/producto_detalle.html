@@ -1,0 +1,15 @@
+{% extends 'inicio.html' %}
+
+{% block title %}
+    Detalles del producto
+{% endblock %}
+
+{% block content %}
+    <h1>Producto</h1>
+    <p><strong>Nombre</strong>  {{producto.nombre}}  </p>
+    <p><strong>Descripcion</strong>  {{producto.descripcion}}  </p>
+    <p><strong>Precio</strong>  {{producto.precio}}  </p>
+
+    <a href="{% url 'producto_lista' %}">Volver a la lista de productos</a>
+{% endblock %}
+
