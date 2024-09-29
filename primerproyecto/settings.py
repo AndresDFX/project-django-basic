@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'mi_aplicacion',
     'articulo',
     'producto',
+    'user_custom',
 ] + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'producto.middleware.MiMiddleware'
 ]
 
 ROOT_URLCONF = 'primerproyecto.urls'
@@ -94,7 +96,7 @@ WSGI_APPLICATION = 'primerproyecto.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", "django_project"),
+        "NAME": os.getenv("DB_NAME", "django_project2"),
         "USER": os.getenv("DB_USER", "postgres"),
         "PASSWORD": os.getenv("DB_PASS", "postgres"),
         "HOST": "localhost",
@@ -143,3 +145,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'user_custom.CustomUser'
