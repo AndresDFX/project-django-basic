@@ -99,7 +99,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", "django_project2"),
         "USER": os.getenv("DB_USER", "postgres"),
         "PASSWORD": os.getenv("DB_PASS", "postgres"),
-        "HOST": "localhost",
+        "HOST": os.getenv("DB_HOST", "localhost"),
         "PORT": "5432",
     },
 }
