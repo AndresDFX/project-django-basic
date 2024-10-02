@@ -33,7 +33,8 @@ ALLOWED_HOSTS = ["*"]
 
 # Agregar librerias de terceros
 THIRD_PARTY_APPS = [
-    'psycopg2'
+    'psycopg2',
+    'rest_framework',
 ]
 
 INSTALLED_APPS = [
@@ -147,3 +148,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_custom.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+}

@@ -1,9 +1,15 @@
 # Common
 django==5.1.1
 python-dotenv==1.0.1
+djangorestframework==3.15.2
 
 # BD
 psycopg==3.2.2
 psycopg2-binary
+
+# Test
+pdbpp==0.10.3
+pyreadline3
+
 
 
