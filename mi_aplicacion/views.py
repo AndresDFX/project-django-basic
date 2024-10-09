@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 
 def saludos(a):
     print(a) #imprime un objeto
@@ -17,3 +21,10 @@ class SaludoView(View):
 
     def post(self, request):
         ...
+
+
+class SaludoViewAPI(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        return Response({"msg": "Saludo tipo rest autenticado"})

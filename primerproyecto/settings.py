@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-trccib2oeb8!fwt!a!*9&(rue(4+)=@c5pm7ufo8=#u1e_b9=^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -35,6 +37,9 @@ ALLOWED_HOSTS = ["*"]
 THIRD_PARTY_APPS = [
     'psycopg2',
     'rest_framework',
+    'rest_framework.authtoken',
+    'debug_toolbar',
+    'django_extensions',
 ]
 
 INSTALLED_APPS = [
@@ -54,6 +59,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -151,10 +157,21 @@ AUTH_USER_MODEL = 'user_custom.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

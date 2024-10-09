@@ -12,4 +12,32 @@
         <button type="submit">Guardar</button>
 
     </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $('#enviar-producto').click(function(e){
+            e.preventDefault();
+
+            $.ajax({
+                url: '/producto/crear-producto/',
+                method: 'POST',
+                data :{
+                    nombre: $('#id_nombre').val(),
+                    precio: $('#id_precio').val(),
+                    descripcion: $('#id_descripcion').val(),
+                    csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+                },
+                success: function (response){
+                    alert("Producto creado con exito!");
+                },
+                error: function (response){
+                    alert("Producto no creado con exito!");
+                }
+
+            });
+
+        });
+
+    </script>
+
 {% endblock %}

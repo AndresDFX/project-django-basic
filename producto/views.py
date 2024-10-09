@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from .models import Producto
@@ -29,11 +29,15 @@ class ProductoDetalleView(DetailView):
 #@login_required
 @permission_required('producto.add_producto', '/login/')
 def crear_producto(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         form = ProductoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("lista_productos")
+            #return redirect("producto_lista")
+            return JsonResponse({"success": True, "message": "Producto creado con exito"})
+
+        else:
+            return JsonResponse({"success": False, "errors": form.errors}, status=400)
     else:
         form = ProductoForm()
     return render(request, 'crear_producto.html', {'form': form})
